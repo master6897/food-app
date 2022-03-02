@@ -3,18 +3,6 @@ import CartContext from "../../Store/Store";
 import CartListMeals from "../ListMeals/CartListMeals";
 import Modal from "../Modal/Modal";
 
-/*const StyledModal = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-`;*/
 const Cart = (props) =>{
     const {mealsCtx, setMealsCtx} = useContext(CartContext);
     const minusMealHandler = (meal) => {
