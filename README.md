@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Food-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created in React. Inspiration was the task during the course on udemy. I did it on my own without instructor code. Adapted for mobile devices using media queries.
 
-## Available Scripts
+## There is no database used in this project.
 
-In the project directory, you can run:
+## Homepage
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/33083829/156432768-fc583c1d-6671-4bdc-a506-326f19bda60a.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Cart
 
-### `npm test`
+Cart without any items added.
+![image](https://user-images.githubusercontent.com/33083829/156433069-d9daac51-0d07-4ced-aa39-5176038a8446.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Cart with some items.
+![image](https://user-images.githubusercontent.com/33083829/156433202-954460a8-c3c9-4295-8fe2-9fcedc84f529.png)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How Cart works?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+When adding something to cart it dynamically change the number of items and calculating total amount. If there's nothing added button 'Order' is not displayed. This component is rendered via Portal in separate div with id='modal-cart'.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before adding something into the cart we can define amount of meals.
 
-### `npm run eject`
+## Simple validation.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Validation is quite simple just to practise. It triggers everytime when user try to add something into the cart. If the amount is < 0 and > 5 error occurs.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![image](https://user-images.githubusercontent.com/33083829/156434527-847c9196-5d23-406d-9ab2-cf2471790bbc.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## This web app is mobile friendly. This is how it looks on Iphone XR.
 
-## Learn More
+![image](https://user-images.githubusercontent.com/33083829/156435195-841e404c-1ca9-4b5c-b52b-2379390581c7.png)
+![image](https://user-images.githubusercontent.com/33083829/156435705-13449ff8-8988-4c9a-aa86-cdb67cb5405f.png)
+![image](https://user-images.githubusercontent.com/33083829/156435437-fcf77869-cf75-40be-833a-9834c72c730b.png)
+![image](https://user-images.githubusercontent.com/33083829/156435523-6aaa4483-d463-4dbc-8cfb-3a8afd9dbe51.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
