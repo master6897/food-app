@@ -1,23 +1,61 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Navigation from './components/Navigation/Navigation';
+import Meals from './components/ListMeals/Meals';
+import CartContext from './Store/Store';
 
 function App() {
+  const [meals, setMeals] = useState([]);
+  const [listMeals, setListMeals] = useState([
+    {
+        id: 'e1',
+        name: 'Sushi',
+        description: 'Finest fish and veggies',
+        price: '22.99',
+        amount: 1,
+        inputValue: 1
+    },
+    {
+        id: 'e2',
+        name: 'Schnitzel',
+        description: 'A german speciality',
+        price: '16.50',
+        amount: 1,
+        inputValue: 1
+    },
+    {
+        id: 'e3',
+        name: 'Barbecue Burger',
+        description: 'American, raw, meaty',
+        price: '12.99',
+        amount: 1,
+        inputValue: 1
+    },
+    {
+        id: 'e4',
+        name: 'Green Bowl',
+        description: 'Healthy...and green...',
+        price: '18.99',
+        amount: 1,
+        inputValue: 1
+    }
+]);
+  const [cartActive, setCartActive] = useState(false);
+  const [animationActive, setAnimationActive] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CartContext.Provider value={{
+        mealsCtx: meals, 
+        setMealsCtx: setMeals, 
+        meals: listMeals, 
+        setMeals: setListMeals,
+        cartActive: cartActive,
+        setCartActive: setCartActive,
+        animationActive: animationActive,
+        setAnimationActive: setAnimationActive}}>
+        <Navigation />
+        <Meals />
+      </CartContext.Provider>
     </div>
   );
 }
