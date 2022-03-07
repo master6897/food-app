@@ -17,11 +17,12 @@ const StyledMealsContainer = styled.div`
     z-index: 1001;
     & div.container-buttons{
         display: flex;
-        width: 100%;
+        width: 50%;
         align-items: center;
-        justify-content: flex-end;
-        & nth-child(1){
-            margin-left: 1rem;
+        justify-content: space-around;
+        padding: 1rem;
+        & button{
+            font-size: 1.2rem;
         }
     }
     @media (max-width: 480px){
@@ -50,6 +51,12 @@ const StyledMealContainer = styled.div`
         align-items: center;
         justify-content: space-between;
         width: 20%;
+        & button{
+            font-size: 1.5rem;
+            @media (max-width: 480px){
+                font-size: 1rem;
+            }
+        }
     }
     & div.container-inputs{
         display: flex;
