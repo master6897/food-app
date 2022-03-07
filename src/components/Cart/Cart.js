@@ -1,10 +1,47 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
 import CartContext from "../../Store/Store";
 import CartListMeals from "../ListMeals/CartListMeals";
 import Modal from "../Modal/Modal";
+import Button from "../Button/Button";
 
+
+const StyledMealsContainer = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 60%;
+    background: white;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    z-index: 1001;
+    & div.list-container{
+        width: 100%;
+        max-height: 40vh;
+        padding: 1rem;
+        overflow-Y: scroll;
+    }
+    & div.container-buttons{
+        display: flex;
+        width: 50%;
+        align-items: center;
+        justify-content: space-around;
+        padding: 1rem;
+        & button{
+            font-size: 1.2rem;
+        }
+    }
+    @media (max-width: 480px){
+        width: 80%;
+    }
+`;
 const Cart = (props) =>{
     const {mealsCtx, setMealsCtx} = useContext(CartContext);
+    const {cartActive, setCartActive} = useContext(CartContext);
+
     const minusMealHandler = (meal) => {
         const tempArray = [...mealsCtx];
         const indexOfMeal = mealsCtx.indexOf(meal);
@@ -21,15 +58,25 @@ const Cart = (props) =>{
         setMealsCtx(tempArray);
     }
 
+    const orderMealHandler = (evt) => {
+        evt.preventDefault();
+        console.log('Ordering...');
+    }
+
     return(
         <Modal>
-            <CartListMeals 
-                listMeals={mealsCtx} 
-                cart={true}
-                minusMealHandler={minusMealHandler}
-                plusMealHandler={plusMealHandler}
-            />
-
+            <StyledMealsContainer>
+                <CartListMeals 
+                    listMeals={mealsCtx} 
+                    cart={true}
+                    minusMealHandler={minusMealHandler}
+                    plusMealHandler={plusMealHandler}
+                />
+                <div className='container-buttons'>
+                    <Button value='Cancel' cancel={true} onClick={() => setCartActive(!cartActive)}/>
+                    {mealsCtx.length > 0 && <Button value='Order' margin='1rem' onClick={orderMealHandler}/>}
+                </div>
+            </StyledMealsContainer>
         </Modal>
     )
 }
