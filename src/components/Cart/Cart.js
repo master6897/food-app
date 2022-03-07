@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import CartContext from "../../Store/Store";
 import CartListMeals from "../ListMeals/CartListMeals";
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
+import UserDetailsForm from "../Form/UserForm";
 
 
 const StyledMealsContainer = styled.div`
@@ -26,7 +27,7 @@ const StyledMealsContainer = styled.div`
     }
     & div.container-buttons{
         display: flex;
-        width: 50%;
+        width: 70%;
         align-items: center;
         justify-content: space-around;
         padding: 1rem;
@@ -41,6 +42,7 @@ const StyledMealsContainer = styled.div`
 const Cart = (props) =>{
     const {mealsCtx, setMealsCtx} = useContext(CartContext);
     const {cartActive, setCartActive} = useContext(CartContext);
+    const [form, setForm] = useState(false);
 
     const minusMealHandler = (meal) => {
         const tempArray = [...mealsCtx];
@@ -61,6 +63,11 @@ const Cart = (props) =>{
     const orderMealHandler = (evt) => {
         evt.preventDefault();
         console.log('Ordering...');
+        setForm(true);
+    }
+
+    const formClosingHandler = () => {
+        setForm(false);
     }
 
     return(
@@ -72,10 +79,12 @@ const Cart = (props) =>{
                     minusMealHandler={minusMealHandler}
                     plusMealHandler={plusMealHandler}
                 />
+                {form && <UserDetailsForm formClosingHandler={formClosingHandler}/>}
+                {!form && 
                 <div className='container-buttons'>
                     <Button value='Cancel' cancel={true} onClick={() => setCartActive(!cartActive)}/>
                     {mealsCtx.length > 0 && <Button value='Order' margin='1rem' onClick={orderMealHandler}/>}
-                </div>
+                </div>}
             </StyledMealsContainer>
         </Modal>
     )

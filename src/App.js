@@ -3,7 +3,7 @@ import './App.css';
 import Navigation from './components/Navigation/Navigation';
 import Meals from './components/ListMeals/Meals';
 import CartContext from './Store/Store';
-import useHttpRequst from './components/Hooks/use-http';
+import useHttpRequest from './components/Hooks/use-http';
 import Modal from './components/Modal/Modal';
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
       setListMeals(loadedTasks);
     }, []);
 
-  const {isLoading, error, sendRequest: fetchMeals} = useHttpRequst(transformData);
+  const {isLoading, error, sendRequest: fetchMeals} = useHttpRequest(transformData);
   useEffect(() => {
     fetchMeals({
       url: 'https://react-custom-hooks-9a46e-default-rtdb.europe-west1.firebasedatabase.app/meals.json'

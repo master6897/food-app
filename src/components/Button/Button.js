@@ -16,10 +16,19 @@ const StyledButton = styled.button`
         background-color: #b94517;
         ${props => props.cancel ? 'color: white;' : null}
     }
+    ${props => props.disabled ? `&:disabled{
+        background: grey;
+        cursor: not-allowed;
+    }` : null}
 `
 const Button = (props) => {
     return(
-        <StyledButton onClick={props.onClick} cancel={props.cancel}>
+        <StyledButton 
+            onClick={props.onClick} 
+            cancel={props.cancel} 
+            type={props.type} 
+            disabled={props.disabled}
+        >
             {props.value}
         </StyledButton>
     )
