@@ -11,33 +11,25 @@ function App() {
         id: 'e1',
         name: 'Sushi',
         description: 'Finest fish and veggies',
-        price: '22.99',
-        amount: 1,
-        inputValue: 1
+        price: '22.99'
     },
     {
         id: 'e2',
         name: 'Schnitzel',
         description: 'A german speciality',
-        price: '16.50',
-        amount: 1,
-        inputValue: 1
+        price: '16.50'
     },
     {
         id: 'e3',
         name: 'Barbecue Burger',
         description: 'American, raw, meaty',
-        price: '12.99',
-        amount: 1,
-        inputValue: 1
+        price: '12.99'
     },
     {
         id: 'e4',
         name: 'Green Bowl',
         description: 'Healthy...and green...',
-        price: '18.99',
-        amount: 1,
-        inputValue: 1
+        price: '18.99'
     }
 ]);
   const [cartActive, setCartActive] = useState(false);

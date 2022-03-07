@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styled from "styled-components";
 import CartContext from "../../Store/Store";
 import Button from "../Button/Button";
@@ -46,35 +46,54 @@ const Meals = (props) => {
     const {setAnimationActive} = useContext(CartContext);
     const {meals} = useContext(CartContext);
     const [isValid, setIsValid] = useState(true);
+    const [mealsWithAmount] = useState([...meals]);
+    useEffect(() => {
+        mealsWithAmount.map((meal) => {
+            return meal.inputValue = 1;
+        })
+    })
+
     const inputAmountHandler = (meal) => (evt) => {
         evt.preventDefault();
-        meal.inputValue = parseInt(evt.target.value);
+        const indexOfMeal = mealsWithAmount.indexOf(meal);
+        mealsWithAmount[indexOfMeal].inputValue = parseInt(evt.target.value);
+        console.log(mealsWithAmount);
+        //meal.inputValue = parseInt(evt.target.value);
     }
     const addMealToCartHandler = (meal) => (evt) =>{
         evt.preventDefault();
-        if(meal.inputValue > 0 && meal.inputValue <5){
-            if(mealsCtx.indexOf(meal) >= 0){
+        const mealObject = mealsWithAmount.find((idMeal) => idMeal.id === meal.id);
+        console.log(mealObject);
+        if(mealObject.inputValue > 0 && mealObject.inputValue <5){
+            const foundMeal = mealsCtx.find((idMeal) => idMeal.id === meal.id);
+            if(foundMeal){
                 const copyMeals = [...mealsCtx];
-                const tempIndex = mealsCtx.indexOf(meal);
-                copyMeals[tempIndex].amount += meal.inputValue;
+                foundMeal.amount += mealObject.inputValue;
                 setAnimationActive(true);
                 setMealsCtx(copyMeals);
                 setTimeout(()=>{
                     setAnimationActive(false);
                 }, 300);
             }else{
-                meal.amount = meal.inputValue;
+                const newMeal = {
+                    id: mealObject.id,
+                    name: mealObject.name,
+                    description: mealObject.description,
+                    price: mealObject.price,
+                    amount: mealObject.inputValue
+                }
                 setAnimationActive(true);
                 setTimeout(()=>{
                     setAnimationActive(false);
                 }, 300);
                 setMealsCtx((prevState) => {
-                    return [meal, ...prevState];
+                    return [newMeal, ...prevState];
                 })
             }
         }else{
             setIsValid(false);
         }
+        console.log(mealsCtx);
     }
     return(
         <>

@@ -66,7 +66,7 @@ const ListMeals = (props) => {
                             <div className='container-inputs'>
                                 <div>
                                     <h3>Amount</h3>
-                                    <input type='number' defaultValue={meal.inputValue} onChange={props.inputAmountHandler(meal)}/>
+                                    <input type='number' defaultValue='1' onChange={props.inputAmountHandler(meal)}/>
                                 </div>
                                 <Button value='+ Add' onClick={props.addMealToCartHandler(meal)}></Button>
                             </div>
