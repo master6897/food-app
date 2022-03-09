@@ -1,5 +1,5 @@
-import React, {useContext, useState} from "react";
-import styled, {keyframes, css} from "styled-components";
+import React, {useContext} from "react";
+import styled, {keyframes} from "styled-components";
 import Button from "../Button/Button";
 import useForm from "../Hooks/use-form";
 import Input from "./Input";
@@ -71,9 +71,8 @@ const AnimatedSpan = styled.span`
 ` 
 
 const UserDetailsForm = (props) => {
-    const {mealsCtx, setMealsCtx} = useContext(CartContext);
-    const {cartActive, setCartActive} = useContext(CartContext);
-    const [isOrdering, setIsOrdering] = useState(false);
+    const {mealsCtx, setMealsCtx, setIsOrdered} = useContext(CartContext);
+    const {cartActive, setCartActive, isOrdering, setIsOrdering} = useContext(CartContext);
     const zipCodeRegex = /[0-9]{2}-[0-9]{3}/;
     const phoneRegex = /[0-9]{3}-[0-9]{3}-[0-9]{3}/;
     const {
@@ -165,8 +164,9 @@ const UserDetailsForm = (props) => {
             setTimeout(() => {
                 setIsOrdering(false);
                 setMealsCtx([]);
-                setCartActive(!cartActive);
                 props.formClosingHandler();
+                setCartActive(!cartActive);
+                setIsOrdered(true);
             },3000);
         }
         firstNameReset();

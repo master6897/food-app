@@ -6,6 +6,8 @@ import useHttpRequest from "../components/Hooks/use-http";
 const Provider = (props) => {
   const [meals, setMeals] = useState([]);
   const [listMeals, setListMeals] = useState([]);
+  const [isOrdered, setIsOrdered] = useState(false);
+  const [isOrdering, setIsOrdering] = useState(false);
 
   const [cartActive, setCartActive] = useState(false);
   const [animationActive, setAnimationActive] = useState(false);
@@ -40,7 +42,11 @@ useEffect(() => {
             animationActive: animationActive,
             setAnimationActive: setAnimationActive,
             isLoading,
-            error}}>
+            error,
+            isOrdered,
+            setIsOrdered,
+            isOrdering,
+            setIsOrdering}}>
                 {props.children}
 
         </CartContext.Provider>

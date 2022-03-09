@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
+import CartContext from "../../Store/Store";
 import Button from "../Button/Button";
 
 
@@ -47,6 +48,7 @@ const StyledMealContainer = styled.div`
 `
 
 const CartListMeals = (props) => {
+    const {isOrdering} = useContext(CartContext)
     let totalAmount = 0;
     const minusMealHandler = (meal) => (evt) => {
         evt.preventDefault();
@@ -68,11 +70,12 @@ const CartListMeals = (props) => {
                                     <p className='descr'>{meal.description}</p>
                                     <p className='price'>${meal.price}</p>
                                 </div>
+                                {!isOrdering &&
                                 <div className='cart-amount__manipulation'>
                                     <Button value="-" onClick={minusMealHandler(meal)}/>
                                     <h3>{meal.amount}</h3>
                                     <Button value="+" onClick={plusMealHandler(meal)}/>
-                                </div>
+                                </div>}
                             </StyledMealContainer>
                         )
                     }): 

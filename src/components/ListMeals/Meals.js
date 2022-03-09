@@ -47,12 +47,15 @@ const Meals = (props) => {
     const {meals} = useContext(CartContext);
     const {isLoading, error} = useContext(CartContext);
     const [isValid, setIsValid] = useState(true);
-    const [mealsWithAmount] = useState([...meals]);
+    const [mealsWithAmount, setMealsWithAmount] = useState([]);
     useEffect(() => {
-        mealsWithAmount.map((meal) => {
-            return meal.inputValue = 1;
-        })
-    })
+        setMealsWithAmount(() => [...meals]);
+        console.log(mealsWithAmount);
+    }, [meals]);
+    console.log(mealsWithAmount);
+    mealsWithAmount.map((meal) => {
+        return meal.inputValue = 1;
+    });
 
     const inputAmountHandler = (meal) => (evt) => {
         evt.preventDefault();
@@ -103,6 +106,7 @@ const Meals = (props) => {
             {isValid && 
             <StyledMealsWrapper>
                 <ListMeals
+                    inputValue={mealsWithAmount.input}
                     listMeals={meals}
                     addMealToCartHandler={addMealToCartHandler}
                     inputAmountHandler={inputAmountHandler}
