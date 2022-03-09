@@ -45,6 +45,7 @@ const Meals = (props) => {
     const {mealsCtx, setMealsCtx} = useContext(CartContext);
     const {setAnimationActive} = useContext(CartContext);
     const {meals} = useContext(CartContext);
+    const {isLoading, error} = useContext(CartContext);
     const [isValid, setIsValid] = useState(true);
     const [mealsWithAmount] = useState([...meals]);
     useEffect(() => {
@@ -97,14 +98,18 @@ const Meals = (props) => {
     }
     return(
         <>
-            {isValid && <StyledMealsWrapper>
+            {!isLoading && !error && 
+            <>
+            {isValid && 
+            <StyledMealsWrapper>
                 <ListMeals
                     listMeals={meals}
                     addMealToCartHandler={addMealToCartHandler}
                     inputAmountHandler={inputAmountHandler}
                 />
             </StyledMealsWrapper>}
-            {!isValid && <Modal onClick={() => setIsValid(!isValid)}>
+            {!isValid && 
+            <Modal onClick={() => setIsValid(!isValid)}>
                     <StyledWarningContainer>
                         <div className="title">
                             <h1>An error occured!</h1>
@@ -115,6 +120,12 @@ const Meals = (props) => {
                         </div>
                     </StyledWarningContainer>
                 </Modal>}
+            </>}
+            {(isLoading || error) && 
+                <Modal>
+                    {error ? <h1 style={{color: 'white'}}>An error occured!</h1> : <h1 style={{color: 'white'}}>Fetching Data...</h1>}
+                </Modal>
+            }
         </>
     )
 }
